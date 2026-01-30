@@ -22,8 +22,8 @@ app.set('views' , path.resolve('./views'));
 
 
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json()); // for json objects
+app.use(express.urlencoded({ extended: false })); // for forms
 
 
 app.use('/', staticRoute);

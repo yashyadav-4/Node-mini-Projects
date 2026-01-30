@@ -31,7 +31,7 @@ async function handleGenerateNewShortUrl(req, res){
     // });
 }
 
-async function handleReturnShortId(req, res) {
+async function handleReturnShortId(req, res) { // requesting through shhort url on browser to return whole url and update visit History
     const shortId=req.params.shortId;
     console.log("Received shortId request:", shortId); 
     
