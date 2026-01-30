@@ -16,6 +16,7 @@ async function handleGenerateNewShortUrl(req, res){
             shortId:shortId,
             redirectUrl:url,
             visitHistory:[],
+            createdBY: req.user._id,
         });
         console.log("URL Created in DB:", result);
     } catch (err) {

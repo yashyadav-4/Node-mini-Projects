@@ -12,6 +12,10 @@ const urlSchema = new mongoose.Schema({
         required:true,
     },
     visitHistory:[{timestamp:{type:Number}}],
+    createdBY:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'users',
+    }
 }, {timestamps:true});
 
 const Url= mongoose.model( 'short_url',urlSchema)
