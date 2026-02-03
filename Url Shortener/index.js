@@ -3,7 +3,7 @@ const express= require('express');
 const {connectToMongoDb}= require('./connect')
 const cookieParser = require('cookie-parser')
 const { Url } = require('./Models/url');
-const {restrictToLoggedinUserOnly , checkAuth}=require('./middleWares/auth')
+const { checkForAuthentication, restrictTO } = require('./middleWares/auth');
 
 
 const urlRoute= require('./Routes/url');
@@ -29,11 +29,11 @@ app.set('views' , path.resolve('./views'));
 app.use(express.json()); // for json objects
 app.use(express.urlencoded({ extended: false })); // for forms
 app.use(cookieParser());
+app.use(checkForAuthentication);
 
-
-app.use('/url' , restrictToLoggedinUserOnly , urlRoute);
+app.use('/url' , restrictTO(['NORMAL' , "ADMIN"]) , urlRoute);
 app.use('/user' , userRoute);
-app.use('/', checkAuth ,staticRoute);
+app.use('/', staticRoute);
 
 app.get('/test' , async(req , res)=>{
     const allUrls=await Url.find({});
